@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — change these to re-theme the whole site
+   ============================================================ */
+:root{
+  --canvas:#F1EEE6;
+  --canvas-alt:#EAE6DA;
+  --ink:#151310;
+  --cobalt:#2E3AF0;
+  --mustard:#D9A61A;
+  --clay:#B24A2E;
+  --sage:#5B7A5A;
+  --card:#FFFDF8;
+  --line: rgba(21,19,16,0.14);
+  --serif: 'Fraunces', serif;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--canvas); color:var(--ink);
+  font-family:var(--sans); line-height:1.5;
+}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+.section{ position:relative; width:100%; padding:110px 8vw; }
+.section-label{
+  font-family:var(--mono); font-size:12px; letter-spacing:0.14em;
+  text-transform:uppercase; opacity:0.55; margin-bottom:18px;
+}
+.section-label span{ color:var(--cobalt); opacity:1; }
+h2.section-title{
+  font-family:var(--serif); font-weight:600; font-size:clamp(28px,4vw,44px);
+  margin:0 0 40px; max-width:820px; line-height:1.15;
+}
+::selection{ background:var(--cobalt); color:var(--card); }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 8vw; mix-blend-mode:difference;
+}
+nav .brand{
+  font-family:var(--mono); font-weight:700; font-size:13px; letter-spacing:0.06em;
+  color:var(--canvas);
+}
+nav ul{
+  display:flex; gap:28px; list-style:none; margin:0; padding:0;
+}
+nav a{
+  font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
+  text-transform:uppercase; text-decoration:none; color:var(--canvas);
+  opacity:0.8; transition:opacity .2s;
+}
+nav a:hover{ opacity:1; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  padding:0 8vw; position:relative; overflow:hidden;
+}
+.hero .kicker{
+  font-family:var(--mono); font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--cobalt); margin-bottom:22px;
+}
+.hero h1{
+  font-family:var(--serif); font-weight:400; font-size:clamp(44px,8vw,110px);
+  line-height:0.98; margin:0 0 28px; max-width:1000px;
+}
+.hero h1 em{ font-style:italic; font-weight:500; color:var(--cobalt); }
+.hero p{
+  font-size:17px; max-width:480px; opacity:0.75; margin:0 0 40px;
+}
+.hero .scroll-cue{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+  opacity:0.45; display:flex; align-items:center; gap:10px;
+}
+.hero .scroll-cue::after{
+  content:''; width:1px; height:34px; background:var(--ink); opacity:0.3;
+  animation:pulse-line 2s ease-in-out infinite;
+}
+@keyframes pulse-line{ 0%,100%{ transform:scaleY(1);} 50%{ transform:scaleY(0.5);} }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{ background:var(--canvas-alt); }
+.about-grid{
+  display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start;
+}
+.about-grid p{ font-size:16.5px; max-width:560px; opacity:0.85; margin:0 0 20px; }
+.about-facts{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); }
+.about-facts .fact{
+  display:flex; justify-content:space-between; padding:16px 0;
+  border-bottom:1px solid var(--line); font-family:var(--mono); font-size:13px;
+}
+.about-facts .fact .k{ opacity:0.5; text-transform:uppercase; letter-spacing:0.06em; }
+@media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   STACK (floating tech icons) — scalable, grouped
+   ============================================================ */
+.stack-section{
+  min-height:100vh; overflow:hidden;
+}
+.stack-controls{
+  display:flex; gap:10px; flex-wrap:wrap; margin-bottom:52px;
+}
+.filter-btn{
+  font-family:var(--mono); font-size:12px; letter-spacing:0.04em; text-transform:uppercase;
+  padding:8px 16px; border-radius:20px; border:1px solid var(--line);
+  background:transparent; color:var(--ink); cursor:pointer; opacity:0.6;
+  transition:all .2s;
+}
+.filter-btn:hover{ opacity:1; }
+.filter-btn.active{ opacity:1; background:var(--ink); color:var(--canvas); border-color:var(--ink); }
+
+.field-wrap{ position:relative; width:100%; height:640px; }
+svg.threads{ position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
+.field{ position:absolute; inset:0; z-index:2; }
+
+.orb{
+  position:absolute; width:78px; height:78px; border-radius:50%;
+  background:var(--card); border:1.5px solid var(--line);
+  box-shadow:0 10px 22px rgba(21,19,16,0.10);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  cursor:pointer;
+  transition:box-shadow .3s ease, border-color .3s ease, opacity .3s ease, filter .3s ease,
+             transform .6s cubic-bezier(.22,1,.36,1), width .5s cubic-bezier(.22,1,.36,1),
+             height .5s cubic-bezier(.22,1,.36,1), border-radius .5s ease, padding .4s ease;
+  will-change:transform;
+}
+.orb .icon{
+  width:30px; height:30px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-weight:700; font-size:12px; color:var(--card); flex:none;
+}
+.orb .label{ font-family:var(--mono); font-size:9.5px; letter-spacing:0.02em; opacity:0.6; text-align:center; }
+.orb:hover{ border-color:var(--cobalt); box-shadow:0 14px 28px rgba(46,58,240,0.18); }
+.orb.dim{ opacity:0.15; filter:blur(1px); pointer-events:none; }
+.orb.filtered-out{ opacity:0; pointer-events:none; }
+
+.orb.active{
+  z-index:50; left:50% !important; top:50% !important;
+  width:400px; height:auto; min-height:220px; border-radius:16px;
+  transform:translate(-50%,-50%) !important;
+  flex-direction:column; align-items:flex-start; justify-content:flex-start;
+  padding:28px 26px 24px; border-color:var(--ink);
+  box-shadow:0 30px 60px rgba(21,19,16,0.28); cursor:default; animation:none !important;
+}
+.orb.active .icon{ width:34px; height:34px; border-radius:8px; margin-bottom:14px; }
+.orb.active .label{ font-size:17px; opacity:1; font-family:var(--mono); font-weight:500; margin-bottom:2px; text-align:left; }
+.orb.active .group-tag{
+  display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
+  text-transform:uppercase; opacity:0.45; margin-bottom:14px;
+}
+.group-tag{ display:none; }
+.desc{ display:none; font-size:13.5px; line-height:1.55; opacity:0.8; margin:2px 0 18px; }
+.orb.active .desc{ display:block; }
+.gh-link{
+  display:none; font-family:var(--mono); font-size:12px; letter-spacing:0.03em;
+  color:var(--card); background:var(--ink); padding:9px 14px; border-radius:6px;
+  text-decoration:none; align-self:flex-start;
+}
+.gh-link:hover{ background:var(--cobalt); }
+.orb.active .gh-link{ display:inline-block; }
+.close-orb{
+  display:none; position:absolute; top:14px; right:14px; width:24px; height:24px;
+  border-radius:50%; border:1px solid var(--line); background:transparent;
+  font-family:var(--mono); font-size:13px; line-height:1; color:var(--ink); cursor:pointer;
+}
+.orb.active .close-orb{ display:block; }
+
+.field-overlay{
+  position:fixed; inset:0; background:rgba(241,238,230,0.55); backdrop-filter:blur(2px);
+  opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:40;
+}
+.field-overlay.show{ opacity:1; pointer-events:auto; }
+
+/* ============================================================
+   ART GALLERY — same zoom language, grid instead of scatter
+   ============================================================ */
+.gallery{ background:var(--canvas-alt); }
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:18px;
+}
+.art-tile{
+  position:relative; aspect-ratio:4/5; border-radius:10px; overflow:hidden;
+  cursor:pointer; border:1px solid var(--line);
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+  background:var(--card);
+}
+.art-tile img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.art-tile:hover img{ transform:scale(1.05); }
+.art-tile .art-meta{
+  position:absolute; left:0; right:0; bottom:0; padding:14px 16px;
+  background:linear-gradient(transparent, rgba(21,19,16,0.75));
+  color:var(--card); font-family:var(--mono); font-size:11.5px; letter-spacing:0.04em;
+}
+
+.art-lightbox{
+  position:fixed; inset:0; z-index:200; display:none;
+  align-items:center; justify-content:center; padding:6vw;
+  background:rgba(21,19,16,0.88);
+}
+.art-lightbox.show{ display:flex; }
+.art-lightbox .box{
+  max-width:900px; width:100%; background:var(--card); border-radius:12px; overflow:hidden;
+  display:grid; grid-template-columns:1.3fr 1fr;
+}
+.art-lightbox img{ width:100%; height:100%; object-fit:cover; }
+.art-lightbox .info{ padding:32px; }
+.art-lightbox h3{ font-family:var(--serif); font-weight:600; font-size:24px; margin:0 0 10px; }
+.art-lightbox p{ font-size:14px; opacity:0.75; margin:0 0 18px; }
+.art-lightbox .tag{ font-family:var(--mono); font-size:11px; opacity:0.5; text-transform:uppercase; }
+.lightbox-close{
+  position:absolute; top:26px; right:6vw; width:36px; height:36px; border-radius:50%;
+  background:var(--card); border:none; font-family:var(--mono); font-size:16px; cursor:pointer;
+}
+@media (max-width:760px){ .art-lightbox .box{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+.contact{ text-align:center; padding:130px 8vw; }
+.contact h2{
+  font-family:var(--serif); font-weight:500; font-style:italic;
+  font-size:clamp(30px,5vw,54px); margin:0 0 30px;
+}
+.contact .email-link{
+  font-family:var(--mono); font-size:16px; text-decoration:none; color:var(--cobalt);
+  border-bottom:1px solid var(--cobalt); padding-bottom:2px;
+}
+footer{
+  display:flex; justify-content:space-between; padding:26px 8vw;
+  font-family:var(--mono); font-size:11px; opacity:0.45;
+  border-top:1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">YOUR NAME ↗</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="kicker">Portfolio / 2026</div>
+  <h1>I build things that <em>work</em>,<br>and things that don't have to.</h1>
+  <p>Developer by trade, artist on the side. This site is a bit of both — scroll to poke around.</p>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="section-label">01 <span>/ about</span></div>
+  <h2 class="section-title">A little bit about me.</h2>
+  <div class="about-grid">
+    <div>
+      <p>Replace this with your real bio — a couple of short paragraphs about who you are, what you build, and what draws you to it. Keep it conversational; this is the one place on the site where visitors hear your actual voice.</p>
+      <p>Mention the throughline between your technical work and your art if there is one — most people are curious how the two relate.</p>
+    </div>
+    <div class="about-facts">
+      <div class="fact"><span class="k">Based in</span><span>Vancouver, BC</span></div>
+      <div class="fact"><span class="k">Focus</span><span>Full-stack + interaction design</span></div>
+      <div class="fact"><span class="k">Currently learning</span><span>Rust</span></div>
+      <div class="fact"><span class="k">Also does</span><span>Illustration, ceramics, etc.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section class="section stack-section" id="stack">
+  <div class="section-label">02 <span>/ tech stack</span></div>
+  <h2 class="section-title">Everything I use, loose in the room.</h2>
+
+  <div class="stack-controls" id="stackControls"><!-- filter buttons injected by JS --></div>
+
+  <div class="field-wrap">
+    <svg class="threads" id="threads"></svg>
+    <div class="field" id="field"></div>
+  </div>
+</section>
+<div class="field-overlay" id="fieldOverlay"></div>
+
+<!-- ============ GALLERY ============ -->
+<section class="section gallery" id="gallery">
+  <div class="section-label">03 <span>/ art</span></div>
+  <h2 class="section-title">Things I made for no reason except wanting to.</h2>
+  <div class="gallery-grid" id="galleryGrid"><!-- tiles injected by JS --></div>
+</section>
+
+<div class="art-lightbox" id="artLightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <div class="box">
+    <img id="lightboxImg" src="" alt="">
+    <div class="info">
+      <div class="tag" id="lightboxTag"></div>
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <h2>Let's talk.</h2>
+  <a class="email-link" href="mailto:you@example.com">you@example.com</a>
+</section>
+
+<footer>
+  <div>© 2026 Your Name</div>
+  <div>Built with too much free time</div>
+</footer>
+
+<script>
+/* ============================================================
+   DATA — this is the part you'll edit most
+   ============================================================
+   Add/remove tech entries freely. "group" is used for the filter
+   pills above the floating field — group icons however makes sense
+   (e.g. "core", "learning", "tools", "design"). Icons currently
+   render as colored letter badges; swap the `short` field for an
+   <img> tag pointing at a real logo whenever you're ready.
+*/
+const STACK_DATA = [
+  { name:"React", short:"R", color:"#2E3AF0", group:"core",
+    desc:"Component-driven front ends. Used across most of my client-facing projects for state and reusable UI.",
+    repo:"https://github.com/yourname/project-react" },
+  { name:"Python", short:"Py", color:"#D9A61A", group:"core",
+    desc:"Backend services, data pipelines, and automation scripts that save me an afternoon.",
+    repo:"https://github.com/yourname/project-python" },
+  { name:"PostgreSQL", short:"Pg", color:"#B24A2E", group:"core",
+    desc:"Relational data modeling for anything that needs to scale past a spreadsheet's patience.",
+    repo:"https://github.com/yourname/project-postgres" },
+  { name:"Docker", short:"Dk", color:"#151310", group:"tools",
+    desc:"Containerized everything so 'works on my machine' stopped being a punchline.",
+    repo:"https://github.com/yourname/project-docker" },
+  { name:"Figma", short:"Fg", color:"#5B7A5A", group:"design",
+    desc:"Where the artsy side sneaks into the technical side — wireframes, prototypes, design systems.",
+    repo:"https://github.com/yourname/project-figma" },
+  { name:"Rust", short:"Rs", color:"#B24A2E", group:"learning",
+    desc:"Currently teaching myself Rust. Nothing production-ready yet, but the repo has my notes and small experiments.",
+    repo:"https://github.com/yourname/learning-rust" },
+  { name:"Procreate", short:"Pc", color:"#2E3AF0", group:"design",
+    desc:"Digital illustration — most of the pieces in the gallery below started here.",
+    repo:"https://github.com/yourname/art-notes" }
+  // add more entries here — the layout scales automatically
+];
+
+const GROUPS = ["all", ...new Set(STACK_DATA.map(d => d.group))];
+
+/* ============================================================
+   ART GALLERY DATA
+   ============================================================ */
+const ART_DATA = [
+  { title:"Untitled study I", tag:"Digital / 2026", img:"https://placehold.co/600x750/EAE6DA/151310?text=Artwork+1",
+    desc:"Swap in your real image URL and a short note about the piece — medium, what prompted it, whatever feels right." },
+  { title:"Untitled study II", tag:"Ink / 2026", img:"https://placehold.co/600x750/F1EEE6/151310?text=Artwork+2",
+    desc:"Swap in your real image URL and a short note about the piece." },
+  { title:"Untitled study III", tag:"Digital / 2025", img:"https://placehold.co/600x750/EAE6DA/151310?text=Artwork+3",
+    desc:"Swap in your real image URL and a short note about the piece." },
+  { title:"Untitled study IV", tag:"Ceramics / 2025", img:"https://placehold.co/600x750/F1EEE6/151310?text=Artwork+4",
+    desc:"Swap in your real image URL and a short note about the piece." }
+  // add more entries here — grid reflows automatically
+];
+
+/* ============================================================
+   STACK FIELD — rendering + physics + filtering
+   ============================================================ */
+const field = document.getElementById('field');
+const fieldWrap = document.querySelector('.field-wrap');
+const fieldOverlay = document.getElementById('fieldOverlay');
+const threadsSvg = document.getElementById('threads');
+const controlsWrap = document.getElementById('stackControls');
+const orbs = [];
+let currentFilter = 'all';
+
+function rand(min,max){ return Math.random()*(max-min)+min; }
+
+function pickPosition(existing, w, h){
+  const marginX = 70, marginTop = 60, marginBottom = 60;
+  let x,y,tries=0;
+  do{
+    x = rand(marginX, w - marginX - 78);
+    y = rand(marginTop, h - marginBottom - 78);
+    tries++;
+  } while(tries < 40 && existing.some(p => Math.hypot(p.x-x, p.y-y) < 150));
+  return {x,y};
+}
+
+function buildField(){
+  const w = fieldWrap.clientWidth, h = fieldWrap.clientHeight;
+  const positions = [];
+  STACK_DATA.forEach(d => {
+    const pos = pickPosition(positions, w, h);
+    positions.push(pos);
+
+    const el = document.createElement('div');
+    el.className = 'orb';
+    el.dataset.group = d.group;
+    el.style.left = pos.x + 'px';
+    el.style.top = pos.y + 'px';
+    el.innerHTML = `
+      <div class="icon" style="background:${d.color}">${d.short}</div>
+      <div class="label">${d.name}</div>
+      <span class="group-tag">${d.group}</span>
+      <button class="close-orb">✕</button>
+      <p class="desc">${d.desc}</p>
+      <a class="gh-link" href="${d.repo}" target="_blank" rel="noopener">→ view repo on GitHub</a>
+    `;
+    field.appendChild(el);
+    orbs.push({
+      el, base:pos, phase:rand(0,Math.PI*2), speed:rand(0.15,0.3), amp:rand(10,20), group:d.group
+    });
+
+    el.addEventListener('click', () => activate(el));
+    el.querySelector('.close-orb').addEventListener('click', e => { e.stopPropagation(); closeAll(); });
+    el.querySelector('.gh-link').addEventListener('click', e => e.stopPropagation());
+  });
+  drawThreads();
+}
+
+function activate(target){
+  if(target.classList.contains('active')) return;
+  orbs.forEach(({el}) => {
+    if(el === target){ el.classList.add('active'); el.classList.remove('dim'); }
+    else { el.classList.add('dim'); el.classList.remove('active'); }
+  });
+  fieldOverlay.classList.add('show');
+}
+function closeAll(){
+  orbs.forEach(({el}) => el.classList.remove('active','dim'));
+  fieldOverlay.classList.remove('show');
+}
+fieldOverlay.addEventListener('click', closeAll);
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeAll(); });
+
+function drawThreads(){
+  threadsSvg.setAttribute('width', fieldWrap.clientWidth);
+  threadsSvg.setAttribute('height', fieldWrap.clientHeight);
+  threadsSvg.innerHTML = '';
+  for(let i=0;i<orbs.length;i++){
+    for(let j=i+1;j<orbs.length;j++){
+      const a = orbs[i].base, b = orbs[j].base;
+      if(Math.hypot(a.x-b.x, a.y-b.y) < 380){
+        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1', a.x+39); line.setAttribute('y1', a.y+39);
+        line.setAttribute('x2', b.x+39); line.setAttribute('y2', b.y+39);
+        threadsSvg.appendChild(line);
+      }
+    }
+  }
+}
+
+let t = 0;
+function tick(){
+  t += 0.016;
+  orbs.forEach(o => {
+    if(o.el.classList.contains('active')) return;
+    const dy = Math.sin(t*o.speed + o.phase) * o.amp;
+    const dx = Math.cos(t*o.speed*0.7 + o.phase) * (o.amp*0.5);
+    o.el.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  requestAnimationFrame(tick);
+}
+
+/* filter pills */
+GROUPS.forEach(g => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (g === 'all' ? ' active' : '');
+  btn.textContent = g;
+  btn.addEventListener('click', () => {
+    currentFilter = g;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    orbs.forEach(o => {
+      const show = g === 'all' || o.group === g;
+      o.el.classList.toggle('filtered-out', !show);
+    });
+  });
+  controlsWrap.appendChild(btn);
+});
+
+buildField();
+tick();
+window.addEventListener('resize', () => {
+  // simple approach: rebuild layout on resize
+  field.innerHTML = '';
+  threadsSvg.innerHTML = '';
+  orbs.length = 0;
+  buildField();
+});
+
+/* ============================================================
+   GALLERY — grid + lightbox (same zoom language as the stack)
+   ============================================================ */
+const galleryGrid = document.getElementById('galleryGrid');
+const lightbox = document.getElementById('artLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxDesc = document.getElementById('lightboxDesc');
+const lightboxTag = document.getElementById('lightboxTag');
+
+ART_DATA.forEach(a => {
+  const tile = document.createElement('div');
+  tile.className = 'art-tile';
+  tile.innerHTML = `<img src="${a.img}" alt="${a.title}"><div class="art-meta">${a.title}</div>`;
+  tile.addEventListener('click', () => {
+    lightboxImg.src = a.img;
+    lightboxTitle.textContent = a.title;
+    lightboxDesc.textContent = a.desc;
+    lightboxTag.textContent = a.tag;
+    lightbox.classList.add('show');
+  });
+  galleryGrid.appendChild(tile);
+});
+document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('show'));
+lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('show'); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') lightbox.classList.remove('show'); });
+</script>
+</body>
+</html>

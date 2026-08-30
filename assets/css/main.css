@@ -124,11 +124,11 @@ nav a:hover{ opacity:1; }
  
 .field-wrap{ position:relative; width:100%; height:640px; }
 svg.threads{ position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
-svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
+svg.threads line{ stroke:var(--ink); stroke-opacity:0.1; stroke-width:1; }
 .field{ position:absolute; inset:0; z-index:90; }
  
 .orb{
-  position:absolute; width:100px; height:100px; border-radius:50%;
+  position:absolute; width:75px; height:75px; border-radius:50%;
   background:var(--card); border:2px solid var(--line);
   box-shadow:0 10px 22px rgba(21,19,16,0.10);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
@@ -141,9 +141,9 @@ svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
 .orb .icon{
   width:30px; height:30px; border-radius:8px;
   display:flex; align-items:center; justify-content:center;
-  font-family:var(--mono); font-weight:700; font-size:12px; color:var(--card); flex:none;
+  font-family:var(--mono); font-weight:700; font-size:10px; color:var(--card); flex:none;
 }
-.orb .label{ font-family:var(--mono); font-size:12px; letter-spacing:0.02em; opacity:0.9; text-align:center; }
+.orb .label{ font-family:var(--mono); font-size:8.5px; letter-spacing:0.02em; opacity:0.9; text-align:center; }
 .orb:hover{ border-color:var(--cobalt); box-shadow:0 14px 28px rgba(46,58,240,0.18); }
 .orb.dim{ opacity:0.2; filter:blur(0.5px); pointer-events:none; }
 .orb.filtered-out{ opacity:0; pointer-events:none; }

@@ -24,7 +24,7 @@
 <section class="hero" id="hero">
   <div class="kicker">Portfolio / 2026</div>
   <h1><em>H</em></h1>
-  <p>Analyst by trade, artist on the side. This site is a bit of both — scroll to poke around.</p>
+  <p>Analyst by trade, artist on the side. This site is a bit of both — scroll to explore.</p>
   <div class="scroll-cue">Scroll</div>
 </section>
 
@@ -49,7 +49,7 @@
 
 <!-- ============ STACK ============ -->
 <section class="section stack-section" id="stack">
-  <div class="section-label">02 <span>/ tech stack</span></div>
+  <div class="section-label">02 <span>/ skills profile</span></div>
   <h2 class="section-title">Everything I use, loose in the room.</h2>
 
   <div class="stack-controls" id="stackControls"><!-- filter buttons injected by JS --></div>
@@ -102,25 +102,29 @@
    <img> tag pointing at a real logo whenever you're ready.
 */
 const STACK_DATA = [
-  { name:"React", short:"R", color:"#2E3AF0", group:"core",
+  { name:"Python", short:"Py", color:"#2E3AF0", group:"core",
     desc:"Component-driven front ends. Used across most of my client-facing projects for state and reusable UI.",
     repo:"https://github.com/yourname/project-react" },
-  { name:"Python", short:"Py", color:"#D9A61A", group:"core",
+  { name:"C", short:"C", color:"#D9A61A", group:"core",
     desc:"Backend services, data pipelines, and automation scripts that save me an afternoon.",
     repo:"https://github.com/yourname/project-python" },
-  { name:"PostgreSQL", short:"Pg", color:"#B24A2E", group:"core",
+  { name:"MATLAB", short:"ML", color:"#D9A61A", group:"tools",
+    desc:"Backend services, data pipelines, and automation scripts that save me an afternoon.",
+    repo:"https://github.com/yourname/project-python" },
+  
+  { name:"Entra ID", short:"E", color:"#B24A2E", group:"it",
     desc:"Relational data modeling for anything that needs to scale past a spreadsheet's patience.",
     repo:"https://github.com/yourname/project-postgres" },
-  { name:"Docker", short:"Dk", color:"#151310", group:"tools",
+  { name:"Active Directory", short:"AD", color:"#151310", group:"it",
     desc:"Containerized everything so 'works on my machine' stopped being a punchline.",
     repo:"https://github.com/yourname/project-docker" },
-  { name:"Figma", short:"Fg", color:"#5B7A5A", group:"design",
+  { name:"Falcon", short:"Fa", color:"#5B7A5A", group:"it",
     desc:"Where the artsy side sneaks into the technical side — wireframes, prototypes, design systems.",
     repo:"https://github.com/yourname/project-figma" },
-  { name:"Rust", short:"Rs", color:"#B24A2E", group:"learning",
+  { name:"Purview", short:"Pu", color:"#B24A2E", group:"it",
     desc:"Currently teaching myself Rust. Nothing production-ready yet, but the repo has my notes and small experiments.",
     repo:"https://github.com/yourname/learning-rust" },
-  { name:"Procreate", short:"Pc", color:"#2E3AF0", group:"design",
+  { name:"Canvas LMS", short:"Ca", color:"#2E3AF0", group:"ed-tech",
     desc:"Digital illustration — most of the pieces in the gallery below started here.",
     repo:"https://github.com/yourname/art-notes" }
   // add more entries here — the layout scales automatically
@@ -297,5 +301,6 @@ document.getElementById('lightboxClose').addEventListener('click', () => lightbo
 lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('show'); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') lightbox.classList.remove('show'); });
 </script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

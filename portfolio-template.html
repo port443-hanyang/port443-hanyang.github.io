@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name — Portfolio</title>
+<title>H Yang — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -128,15 +128,15 @@ nav a:hover{ opacity:1; }
 }
 .filter-btn:hover{ opacity:1; }
 .filter-btn.active{ opacity:1; background:var(--ink); color:var(--canvas); border-color:var(--ink); }
-
+ 
 .field-wrap{ position:relative; width:100%; height:640px; }
 svg.threads{ position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
 svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
-.field{ position:absolute; inset:0; z-index:2; }
-
+.field{ position:absolute; inset:0; z-index:90; }
+ 
 .orb{
-  position:absolute; width:78px; height:78px; border-radius:50%;
-  background:var(--card); border:1.5px solid var(--line);
+  position:absolute; width:100px; height:100px; border-radius:50%;
+  background:var(--card); border:2px solid var(--line);
   box-shadow:0 10px 22px rgba(21,19,16,0.10);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
   cursor:pointer;
@@ -150,11 +150,11 @@ svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
   display:flex; align-items:center; justify-content:center;
   font-family:var(--mono); font-weight:700; font-size:12px; color:var(--card); flex:none;
 }
-.orb .label{ font-family:var(--mono); font-size:9.5px; letter-spacing:0.02em; opacity:0.6; text-align:center; }
+.orb .label{ font-family:var(--mono); font-size:12px; letter-spacing:0.02em; opacity:0.9; text-align:center; }
 .orb:hover{ border-color:var(--cobalt); box-shadow:0 14px 28px rgba(46,58,240,0.18); }
-.orb.dim{ opacity:0.15; filter:blur(1px); pointer-events:none; }
+.orb.dim{ opacity:0.2; filter:blur(0.5px); pointer-events:none; }
 .orb.filtered-out{ opacity:0; pointer-events:none; }
-
+ 
 .orb.active{
   z-index:50; left:50% !important; top:50% !important;
   width:400px; height:auto; min-height:220px; border-radius:16px;
@@ -185,10 +185,11 @@ svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
   font-family:var(--mono); font-size:13px; line-height:1; color:var(--ink); cursor:pointer;
 }
 .orb.active .close-orb{ display:block; }
-
+ 
 .field-overlay{
-  position:fixed; inset:0; background:rgba(241,238,230,0.55); backdrop-filter:blur(2px);
+  position:absolute; inset:0; background:rgba(241,238,230,0.55); backdrop-filter:blur(2px);
   opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:40;
+  border-radius:inherit;
 }
 .field-overlay.show{ opacity:1; pointer-events:auto; }
 
@@ -256,7 +257,7 @@ footer{
 <body>
 
 <nav>
-  <div class="brand">YOUR NAME ↗</div>
+  <div class="brand">H ↗</div>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#stack">Stack</a></li>
@@ -268,8 +269,8 @@ footer{
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
   <div class="kicker">Portfolio / 2026</div>
-  <h1>I build things that <em>work</em>,<br>and things that don't have to.</h1>
-  <p>Developer by trade, artist on the side. This site is a bit of both — scroll to poke around.</p>
+  <h1><em>H</em></h1>
+  <p>Analyst by trade, artist on the side. This site is a bit of both — scroll to poke around.</p>
   <div class="scroll-cue">Scroll</div>
 </section>
 
@@ -279,14 +280,15 @@ footer{
   <h2 class="section-title">A little bit about me.</h2>
   <div class="about-grid">
     <div>
-      <p>Replace this with your real bio — a couple of short paragraphs about who you are, what you build, and what draws you to it. Keep it conversational; this is the one place on the site where visitors hear your actual voice.</p>
-      <p>Mention the throughline between your technical work and your art if there is one — most people are curious how the two relate.</p>
+      <p>I'm an engineering student with experience in learning technology and information systems.</p>
+      <p>My academic background, work experience, and passion for creating art has made me a robust problem-solver in technical operations.</p>
+      <p>In our ever-evolving threat landscape of today, I look forward to collaborating with IT and security professionals, guarding the security of our tomorrow.</p>
     </div>
     <div class="about-facts">
-      <div class="fact"><span class="k">Based in</span><span>Vancouver, BC</span></div>
-      <div class="fact"><span class="k">Focus</span><span>Full-stack + interaction design</span></div>
-      <div class="fact"><span class="k">Currently learning</span><span>Rust</span></div>
-      <div class="fact"><span class="k">Also does</span><span>Illustration, ceramics, etc.</span></div>
+      <div class="fact"><span class="k">Based in</span><span>The Pacific NorthWest</span></div>
+      <div class="fact"><span class="k">Focus</span><span>Information systems, cybersecurity</span></div>
+      <div class="fact"><span class="k">Currently learning</span><span>SQL</span></div>
+      <div class="fact"><span class="k">Also does</span><span>Illustration, painting, other mixed media</span></div>
     </div>
   </div>
 </section>
@@ -308,7 +310,7 @@ footer{
 <!-- ============ GALLERY ============ -->
 <section class="section gallery" id="gallery">
   <div class="section-label">03 <span>/ art</span></div>
-  <h2 class="section-title">Things I made for no reason except wanting to.</h2>
+  <h2 class="section-title">art</h2>
   <div class="gallery-grid" id="galleryGrid"><!-- tiles injected by JS --></div>
 </section>
 
@@ -326,13 +328,13 @@ footer{
 
 <!-- ============ CONTACT ============ -->
 <section class="contact" id="contact">
-  <h2>Let's talk.</h2>
-  <a class="email-link" href="mailto:you@example.com">you@example.com</a>
+  <h2>Let's connect.</h2>
+  <a class="email-link" href="https://www.linkedin.com/in/hannahh-yang/">LinkedIn</a>
 </section>
 
 <footer>
-  <div>© 2026 Your Name</div>
-  <div>Built with too much free time</div>
+  <div>© 2026 H Yang</div>
+  <div>ehlo 250</div>
 </footer>
 
 <script>
@@ -376,13 +378,13 @@ const GROUPS = ["all", ...new Set(STACK_DATA.map(d => d.group))];
    ART GALLERY DATA
    ============================================================ */
 const ART_DATA = [
-  { title:"Untitled study I", tag:"Digital / 2026", img:"https://placehold.co/600x750/EAE6DA/151310?text=Artwork+1",
+  { title:"Untitled study I", tag:"Digital / 2026", img:"https://port443-hanyang.github.io/assets/media/fall-painting.jpeg?text=Artwork+1",
     desc:"Swap in your real image URL and a short note about the piece — medium, what prompted it, whatever feels right." },
-  { title:"Untitled study II", tag:"Ink / 2026", img:"https://placehold.co/600x750/F1EEE6/151310?text=Artwork+2",
+  { title:"Untitled study II", tag:"Acrylic / 2026", img:"https://port443-hanyang.github.io/assets/media/field-painting.jpeg?text=Artwork+2",
     desc:"Swap in your real image URL and a short note about the piece." },
-  { title:"Untitled study III", tag:"Digital / 2025", img:"https://placehold.co/600x750/EAE6DA/151310?text=Artwork+3",
+  { title:"Untitled study III", tag:"Digital / 2025", img:"https://port443-hanyang.github.io/assets/media/sunset-cat.png?text=Artwork+3",
     desc:"Swap in your real image URL and a short note about the piece." },
-  { title:"Untitled study IV", tag:"Ceramics / 2025", img:"https://placehold.co/600x750/F1EEE6/151310?text=Artwork+4",
+  { title:"Untitled study IV", tag:"Digital / 2025", img:"https://port443-hanyang.github.io/assets/media/astronaut.png?text=Artwork+4",
     desc:"Swap in your real image URL and a short note about the piece." }
   // add more entries here — grid reflows automatically
 ];

@@ -128,15 +128,15 @@ nav a:hover{ opacity:1; }
 }
 .filter-btn:hover{ opacity:1; }
 .filter-btn.active{ opacity:1; background:var(--ink); color:var(--canvas); border-color:var(--ink); }
-
+ 
 .field-wrap{ position:relative; width:100%; height:640px; }
 svg.threads{ position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
 svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
-.field{ position:absolute; inset:0; z-index:2; }
-
+.field{ position:absolute; inset:0; z-index:90; }
+ 
 .orb{
-  position:absolute; width:78px; height:78px; border-radius:50%;
-  background:var(--card); border:1.5px solid var(--line);
+  position:absolute; width:100px; height:100px; border-radius:50%;
+  background:var(--card); border:2px solid var(--line);
   box-shadow:0 10px 22px rgba(21,19,16,0.10);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
   cursor:pointer;
@@ -150,11 +150,11 @@ svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
   display:flex; align-items:center; justify-content:center;
   font-family:var(--mono); font-weight:700; font-size:12px; color:var(--card); flex:none;
 }
-.orb .label{ font-family:var(--mono); font-size:9.5px; letter-spacing:0.02em; opacity:0.6; text-align:center; }
+.orb .label{ font-family:var(--mono); font-size:12px; letter-spacing:0.02em; opacity:0.9; text-align:center; }
 .orb:hover{ border-color:var(--cobalt); box-shadow:0 14px 28px rgba(46,58,240,0.18); }
-.orb.dim{ opacity:0.15; filter:blur(1px); pointer-events:none; }
+.orb.dim{ opacity:0.2; filter:blur(0.5px); pointer-events:none; }
 .orb.filtered-out{ opacity:0; pointer-events:none; }
-
+ 
 .orb.active{
   z-index:50; left:50% !important; top:50% !important;
   width:400px; height:auto; min-height:220px; border-radius:16px;
@@ -185,10 +185,11 @@ svg.threads line{ stroke:var(--ink); stroke-opacity:0.08; stroke-width:1; }
   font-family:var(--mono); font-size:13px; line-height:1; color:var(--ink); cursor:pointer;
 }
 .orb.active .close-orb{ display:block; }
-
+ 
 .field-overlay{
-  position:fixed; inset:0; background:rgba(241,238,230,0.55); backdrop-filter:blur(2px);
+  position:absolute; inset:0; background:rgba(241,238,230,0.55); backdrop-filter:blur(2px);
   opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:40;
+  border-radius:inherit;
 }
 .field-overlay.show{ opacity:1; pointer-events:auto; }
 
@@ -268,7 +269,7 @@ footer{
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
   <div class="kicker">Portfolio / 2026</div>
-  <h1>I build things that <em>work</em>,<br>and things that don't have to.</h1>
+  <h1><em>H</em></h1>
   <p>Analyst by trade, artist on the side. This site is a bit of both — scroll to poke around.</p>
   <div class="scroll-cue">Scroll</div>
 </section>
@@ -309,7 +310,7 @@ footer{
 <!-- ============ GALLERY ============ -->
 <section class="section gallery" id="gallery">
   <div class="section-label">03 <span>/ art</span></div>
-  <h2 class="section-title">Things I made for no reason except wanting to.</h2>
+  <h2 class="section-title">art</h2>
   <div class="gallery-grid" id="galleryGrid"><!-- tiles injected by JS --></div>
 </section>
 
@@ -333,7 +334,7 @@ footer{
 
 <footer>
   <div>© 2026 H Yang</div>
-  <div>Built with too much free time</div>
+  <div>ehlo 250</div>
 </footer>
 
 <script>
